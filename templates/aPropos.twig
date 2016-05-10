@@ -1,19 +1,9 @@
-<!doctype>
-<HTML>
+{% extends "base.twig" %}
 
-<HEAD>
-	<TITLE>A Propos</TITLE>
-	{{ include('head.twig')}}
-</HEAD>
+{% block title %}A propos{% endblock %}
 
-<BODY>
+
+{% block content %}
 	{{ include('menu.twig') }}
 
-	<div>
-		Onglet des 'A propos'
-		contiendra les horaires, l'adresse, le numero de telehpone, une adresse mail, 
-	</div>
-	
-
-</BODY>
-</HTML>
+{% endblock %}

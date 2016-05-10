@@ -1,18 +1,12 @@
-<!doctype>
-<HTML>
+{% extends "base.twig" %}
 
-<HEAD>
-	<TITLE>Services</TITLE>
-	{{ include('head.twig')}}
-</HEAD>
+{% block title %}Services {% endblock %}
 
-<BODY>
+
+{% block content %}
 	{{ include('menu.twig') }}
 
 	<div>
-		Onglet des services
-	</div>
-	
-
-</BODY>
-</HTML>
+		Onglet des servies.
+	</div>	
+{% endblock %}

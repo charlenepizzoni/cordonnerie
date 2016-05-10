@@ -1,26 +1,13 @@
-<!doctype>
-<HTML>
+{% extends "base.twig" %}
 
-<HEAD>
-	<TITLE>Accueil</TITLE>
-	{{ include('head.twig')}}
-</HEAD>
+{% block title %} Accueil{% endblock %}
 
-<BODY>
+
+{% block content %}
 	{{ include('menu.twig') }}
 
 	<div>
-		Onglet d'acceuil
-	</div>
-	
+		Onglet d'accueil.
+	</div>	
 
-</BODY>
-</HTML>
-
-<!--
-logo/lien
-<a id="logo" href="/"> <span>Montpellier Jug</span></a>
-
-adaptativité
-http://materializecss.com/grid.html
--->
+{% endblock %}

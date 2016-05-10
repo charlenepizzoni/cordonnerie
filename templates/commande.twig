@@ -1,12 +1,9 @@
-<!doctype>
-<HTML>
+{% extends "base.twig" %}
 
-<HEAD>
-	<TITLE>Commande</TITLE>
-	{{ include('head.twig')}}
-</HEAD>
+{% block title %}Commande{% endblock %}
 
-<BODY>
+
+{% block content %}
 	{{ include('menu.twig') }}
 
 	<div>
@@ -18,6 +15,5 @@
 		</p>
 		<a class="waves-effect waves-light btn">Vérifier l'état</a>
 	</div>
-	
-</BODY>
-</HTML>
+
+{% endblock %}
