@@ -12,10 +12,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="icon" href="image/favicon.png" type="image/png">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
     {% block head %}{% endblock%}
 </HEAD>
 
 <BODY>
 		{% block content %}{% endblock %}
+
+		<script type="text/javascript">
+
+			{% block script %}{% endblock %}
+		</script>
+
 </BODY>
 </HTML>
