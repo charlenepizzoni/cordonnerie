@@ -1,24 +1,18 @@
 <?php
-	include_once('twig/lib/Twig/Autoloader.php');
-    Twig_Autoloader::register();
-    
-    $loader = new Twig_Loader_Filesystem('templates'); // Dossier contenant les templates
-    $twig = new Twig_Environment($loader, array(
-      'cache' => false
-    ));
+	include_once('twig.php');
 
 
 	if (isset($_POST['username']) && isset($_POST['password'])) {
 	  $username = $_POST['username'];
 	  $password = $_POST['password'];
 	  // Faire quelque chose avec, genre vérifier
-	  if (verifier($username, $password)) {
-	    $template = $twig->loadTemplate('accueilAdmin.twig');
+	  if (verifierAdmin($username, $password)) {
+	    require_once('accueilAdmin.php')
 	  } else {
-	    $template = $twig->loadTemplate('errorConnexion.twig');
+	    require_once('errorConnexion.php');
 	  }
 	} else {
-		$template = $twig->loadTemplate('connexion.twig');
+		require_once('connexion.php')
 	}
     echo $template->render(array(
 	'moteur_name' => 'Twig'

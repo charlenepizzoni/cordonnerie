@@ -1,13 +1,13 @@
 CREATE TABLE ADMIN(
 	IDA INT not null unique auto_increment,
 	NAMEA VARCHAR(20) not null unique,
-	PASSWORDA VARCHAR(30) not null, 
+	PASSWORDA VARCHAR(500) not null, 
 	primary key (IDA)
 );
 
 CREATE TABLE TOKEN(
 	IDT INT not null unique auto_increment,
-	VALUET VARCHAR(50) not null unique,
+	VALUET VARCHAR(500) not null unique,
 	IDA INT not null,
 	ENDT DATE not null,
 	primary key (IDT),
