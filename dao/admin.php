@@ -1,9 +1,9 @@
-<? php
-
-	class admin{
-		public  $idA;
-		public  $name;
-		public  $password;
+<?php
+	require_once('bd.php');
+	class Admin{
+		private  $idA;
+		private  $name;
+		private  $password;
 
 		public function __construct($idA, $name, $password){
 			$this->idA = $idA;
@@ -12,12 +12,14 @@
 		}
 
 			
-	    public static function getByName($name) {
-		    $db = Db::getInstance();
-		    $name = mysql_real_escape_string($name);
-		    $req = $db->query("SELECT * FROM ADMIN where NAMEA=".$name);
+	    public function getByName($name) {
+		    $bd = bd::getInstance();
+		    $req = $bd->prepare("SELECT * FROM ADMIN where NAMEA=?;");
+		    $req->execute([$name]);
+		    echo "SELECT * FROM ADMIN where NAMEA='".$name."'";
 			foreach($req->fetchAll() as $admin) {
-		    	$res = new Admin($admin['IDA'], $admin['NAMEA'], $post['PASSWORDA']);
+				echo "1";
+		    	$res = new Admin($admin['IDA'], $admin['NAMEA'], $admin['PASSWORDA']);
 		    } // it should have ONLY 1 admin object
 	      	return $res;
 	    }
@@ -28,14 +30,14 @@
 	    }
 
 	    public static function addAdmin($name, $password){
-	    	$db = Db::getInstance();
+	    	$bd = bd::getInstance();
 		    $name = mysql_real_escape_string($name);
-		    $req = $db->query("INSERT INTO 'ADMIN'('IDA','NAMEA','PASSWORDA') VALUES (NULL,".$name.",".encoderPassword($password).")");
+		    $req = $bd->query("INSERT INTO 'ADMIN'('IDA','NAMEA','PASSWORDA') VALUES (NULL,".$name.",".encoderPassword($password).")");
 	    }
 
 	    // to connect
 	    public function verifierPassword($password){
-	    	return password_verify($password, $this->password);
+	    	return ($password==$this->password);
 	    }
 
 	    public static function verifierAdmin($username, $password){

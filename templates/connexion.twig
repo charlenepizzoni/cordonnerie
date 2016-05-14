@@ -2,26 +2,26 @@
 
 {% block title %}Connexion{% endblock %}
 {% block head %}
-	<link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="style.css"/>
 {% endblock%}
 
 {% block content %}
 
-	<div class="row">
+  <div class="row">
     <form class="col s12" action="actionConnexion.php" method="post">
-    	<div class="row">
-        	<div class="input-field col s12">
-          		<input id="name" type="text" class="validate">
-          		<label for="name"><span class="orange-text text-darken-4">Identifiant (votre nom) :</span></label>
-        	</div>
-    	</div>
-    	<div class="row">
-        	<div class="input-field col s12">
-        		<input id="password" type="password" class="validate">
-        		<label for="password"><span class="orange-text text-darken-4">Mot de passe :</span></label>
-        	</div>
-    	</div>
-  		<button type="submit" class="waves-effect waves-light btn orange darken-4">Se connecter</button>
+      <div class="row">
+          <div class="input-field col s12">
+              <input id="name" type="text" name="name" class="validate">
+              <label for="name"><span class="orange-text text-darken-4">Identifiant (votre nom) :</span></label>
+          </div>
+      </div>
+      <div class="row">
+          <div class="input-field col s12">
+            <input id="password" type="password" name="password" class="validate">
+            <label for="password"><span class="orange-text text-darken-4">Mot de passe :</span></label>
+          </div>
+      </div>
+      <button type="submit" class="waves-effect waves-light btn orange darken-4">Se connecter</button>
     </form>
   </div>
   {% block error %}{% endblock %}

@@ -1,20 +1,30 @@
 <?php
-	include_once('twig.php');
+	require_once('twig.php');
+	require_once('dao/admin.php');
+
+	// if coockieExist
+	//else
+		if (isset($_POST['name']) && isset($_POST['password'])) {
+			$adminName = $_POST['name'];
+			$password = $_POST['password'];
+			$admin = new Admin();
+			$admin = $admin->getByName($adminName);
+			if($admin == null){
+				$template = $twig->loadTemplate('pasDadmin.twig');
+			}elseif ($admin->verifierPassword($password)) {
+				//TODO
+			    // generate a token
+			    //enregistrer le token dans cookie
+			    // saveCookie
+			    $nom = $admin->name;
+			    require_once('adminHome.php');
+			} else {
+			    $template = $twig->loadTemplate('errorConnexion.twig');
+			} 
+		} else {
+			$template = $twig->loadTemplate('connexion.twig');
+		} 
 
 
-	if (isset($_POST['username']) && isset($_POST['password'])) {
-	  $username = $_POST['username'];
-	  $password = $_POST['password'];
-	  // Faire quelque chose avec, genre vérifier
-	  if (verifierAdmin($username, $password)) {
-	    require_once('accueilAdmin.php')
-	  } else {
-	    require_once('errorConnexion.php');
-	  }
-	} else {
-		require_once('connexion.php')
-	}
-    echo $template->render(array(
-	'moteur_name' => 'Twig'
-    )); 
+    echo $template->render(array('password'=> $admin->password, 'nom'=>$admin->name)); 
 ?>

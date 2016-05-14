@@ -1,0 +1,7 @@
+{% extends "connexion.twig" %}
+
+	{% block error %}
+		<div>
+			Votre identifiant ou votre mot de passe n'est pas valide.
+		</div>
+	{% endblock %}

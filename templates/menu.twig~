@@ -5,7 +5,7 @@
 				 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
-					<li><a href="index.php">Accueil</a></li>
+					<li><a href="index.php">Acceuil</a></li>
 					<li><a href="services.php">Services</a></li>
 					<li><a href="commande.php">Mes Commandes</a></li>
 					<li><a href="aPropos.php">A propos</a></li>

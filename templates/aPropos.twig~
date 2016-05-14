@@ -1,0 +1,9 @@
+{% extends "base.twig" %}
+
+{% block title %}A propos{% endblock %}
+
+
+{% block content %}
+	{{ include('menu.twig') }}
+
+{% endblock %}
