@@ -44,3 +44,25 @@
 	}
 
 ?>
+
+<!-- 
+	_____________ example of getter __________________________
+	    public static function getByName($name) {
+		    $list = [];
+		    $db = Db::getInstance();
+		    $name = mysql_real_escape_string($name);
+		    $req = $db->query("SELECT * FROM ADMIN where NAMEA=".$name);
+
+			foreach($req->fetchAll() as $admin) {
+		    	$list[] = new Admin($admin['IDA'], $admin['NAMEA'], $post['PASSWORDA']);
+		    }
+
+	      	return $list;
+
+
+
+			foreach($req->fetchAll() as $admin) {
+				echo "1";
+		    	$res = new Admin($admin['IDA'], $admin['NAMEA'], $admin['PASSWORDA']);
+		    } // it should have ONLY 1 admin object
+	    } -->

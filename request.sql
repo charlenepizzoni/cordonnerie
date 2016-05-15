@@ -9,7 +9,7 @@ CREATE TABLE TOKEN(
 	IDT INT not null unique auto_increment,
 	VALUET VARCHAR(500) not null unique,
 	IDA INT not null,
-	ENDT DATE not null,
+	ENDT TIMESTAMP not null,
 	primary key (IDT),
 	foreign key (IDA) references ADMIN(IDA)
 );
@@ -39,11 +39,11 @@ CREATE TABLE CATEGORY(
 );
 
 CREATE TABLE COMMANDE(
-	IDO INT not null unique auto_increment,
+	IDCOM INT not null unique auto_increment,
 	IDCAT INT,
-	NUMBERO VARCHAR(20) unique,
-	STATUSO VARCHAR(20) CHECK (STATUSO IN('EN COURS', 'PRET')),
-	primary key (IDO),
+	NUMC VARCHAR(20) unique,
+	ETATC VARCHAR(20) CHECK (ETATC IN('EN COURS', 'PRET')),
+	primary key (IDCOM),
 	foreign key (IDCAT) references CATEGORY(IDCAT)
 ); 
 
