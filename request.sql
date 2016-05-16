@@ -49,7 +49,7 @@ CREATE TABLE COMMANDE(
 
 
 
-INSERT INTO `ADMIN`(`IDA`, `NAMEA`, `PASSWORDA`) VALUES (NULL,'admin','admin');
+INSERT INTO ADMIN(NAMEA, PASSWORDA) VALUES ('admin','d033e22ae348aeb5660fc2140aec35850c4da997');
 
 DELIMITER //
 
@@ -60,6 +60,24 @@ BEGIN
 	DECLARE nb INT;
 	set nb = (select count(*) from ADMIN); 
     if nb < 2
+    then
+		select 1, 2 INTO @a;
+    end if;
+
+END;//
+delimiter ;
+
+
+
+DELIMITER //
+
+CREATE TRIGGER TOKEN_BEFORE_INSERT 
+BEFORE INSERT ON TOKEN
+FOR EACH ROW 
+BEGIN
+	DECLARE endt INT;
+	set endt = NEW.ENDT; 
+    if endt < CURRENT_TIMESTAMP
     then
 		select 1, 2 INTO @a;
     end if;
