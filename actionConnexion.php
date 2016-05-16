@@ -10,7 +10,7 @@
 		if (($admin != null) && ($admin->verifierPassword($password))) {
 			$value = Token::genererToken($password);
 			$endDate = time()+60*60*12; // on veut que notre token soit valable 12h
-			$token = new Token(null, $admin->name, $value, $endDate);
+			$token = new Token(null, $admin->ida, $value, $endDate);
 			$token->addToken();
 		    setcookie('token', $value, ($endDate));
 		    $nom = $admin->name;

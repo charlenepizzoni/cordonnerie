@@ -33,7 +33,7 @@ CREATE TABLE SERVICE(
 
 CREATE TABLE CATEGORY(
 	IDCAT INT not null unique auto_increment,
-	NAMECAT VARCHAR(50) not null unique,
+	NAMECAT VARCHAR(50) unique,
 	LIBELCAT VARCHAR(500),
 	primary key (IDCAT)
 );

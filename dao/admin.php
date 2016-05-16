@@ -5,8 +5,8 @@
 		public  $name;
 		public  $password;
 
-		public function Admin($idA, $name, $password){
-			$this->idA = $idA;
+		public function Admin($ida, $name, $password){
+			$this->ida = $ida;
 			$this->name = $name;
 			$this->password = $password;
 		}
