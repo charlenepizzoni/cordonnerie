@@ -51,11 +51,18 @@ CREATE TABLE COMMANDE(
 
 INSERT INTO `ADMIN`(`IDA`, `NAMEA`, `PASSWORDA`) VALUES (NULL,'admin','admin');
 
-delimiter //
-CREATE TRIGGER supprimerToken
-BEFORE INSERT ON TOKEN
-FOR EACH ROW
+DELIMITER //
+
+CREATE TRIGGER ADMIN_BEFORE_DELETE 
+BEFORE DELETE ON ADMIN
+FOR EACH ROW 
 BEGIN
-    DELETE FROM TOKEN
-    WHERE ENDT < CURRENT_TIMESATAM;
-END//;
+	DECLARE nb INT;
+	set nb = (select count(*) from ADMIN); 
+    if nb < 2
+    then
+		select 1, 2 INTO @a;
+    end if;
+
+END;//
+delimiter ;

@@ -1,0 +1,17 @@
+{% extends "base.twig" %}
+
+{% block title %}Gerer les Commandes{% endblock %}
+
+{% block content %}
+	{{ include('menuAdmin.twig') }}
+
+<h3>futur onglet servant à gerer les administrateurs et leurs comptes.</h3>
+
+
+{% endblock %}
+
+{% block script %}
+	$(document).ready(function() {
+    	$('select').material_select();
+	});
+{% endblock %}

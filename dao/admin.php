@@ -23,18 +23,19 @@
 
 	    // To add into db
 	    public static function encoderPassword($password){
-	    	return password_hash($password, PASSWORD_DEFAULT);
+	    	return sha1($password);
 	    }
 
 	    public static function addAdmin($name, $password){
 	    	$bd = bd::getInstance();
-		    $req = $bd->prepare("INSERT INTO 'ADMIN'('IDA','NAMEA','PASSWORDA') VALUES (NULL,?,?)");
-		    $res->execute([$name, $password]);
+		    $req = $bd->prepare("INSERT INTO ADMIN(NAMEA,PASSWORDA) VALUES (?,?)");
+		    $req->execute([$name, $password]);
+		    print_r([$name, $password]);
 	    }
 
 	    // to connect
 	    public function verifierPassword($password){
-	    	return ($password==$this->password);
+	    	return (Admin::encoderPassword($password)==$this->password);
 	    }
 
 	    public static function verifierAdmin($username, $password){

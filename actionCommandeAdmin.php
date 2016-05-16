@@ -13,7 +13,10 @@
 				$error = true;
 			}
 		} elseif($_POST['action'] == 'supprimer'){
-
+			$numero = $_POST['numero'];
+			echo 'coucou';
+			Commande::supprimer($numero);
+			$error = false;
 		} else {
 			$error = true;
 		}
@@ -21,14 +24,17 @@
 		$error = true;
 	}
 
+	$template = $twig->loadTemplate('commandeAdmin.twig');
 
 	if ($error) {
-		$template = $twig->loadTemplate('commandeAdmin.twig');
+		echo $template->render(array(
+			'codeRetour' => 'Pas assez de paramettres, veuillez recommencer.'
+    	)); 
+	} else {
+		echo $template->render(array(
+			'codeRetour' => 'Les modifications ont bien été réalisées !'
+    	)); 
 	}
-	
-
-    echo $template->render(array(
-	'moteur_name' => 'Twig'
-    )); 
+	 
 
 ?>

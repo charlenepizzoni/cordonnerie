@@ -5,7 +5,7 @@
 {% block content %}
 	{{ include('menuAdmin.twig') }}
 
-<h1>Gere les commandes de vos clients en ligne</h1>
+<h3>Gere les commandes de vos clients en ligne</h3>
 
 	<div class="row">
 		<form class="col s10" action="actionCommandeAdmin.php" method="post">	
@@ -34,6 +34,8 @@
 			</div>
 		</form>
 	</div>
+
+	<p>{{codeRetour}}</p>
 
 {% endblock %}
 
