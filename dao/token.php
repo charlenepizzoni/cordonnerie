@@ -1,4 +1,5 @@
 <?php
+	require_once('bd.php');
 
 	class Token{
 		private  $idt;
@@ -11,9 +12,12 @@
 			$this->ida = $ida;
 			$this->value = $value;
 			$this->end = $end;
+		}
+
+		public function addToken(){
 			$bd = bd::getInstance();
-		    $req = $bd->prepare("INSERT INTO TOKEN (IDA, VALUET, ENDT) values (?, ?, ?)");
-		    $req->execute([$ida, $value, $end]);
+		    $req = $bd->prepare("INSERT INTO TOKEN (IDA, VALUET, ENDT) values (?, ?, ?);");
+		    $req->execute([$this->ida, $this->value, $this->end]);
 		}
 
 	    public function getByNum($value) {
@@ -26,9 +30,9 @@
 	    }
 
 	    public static function genererToken($password){
-	    	$value = password_hash($password.mt_rand());
+	    	$value = password_hash($password.mt_rand(), PASSWORD_DEFAULT);
 	    	while (Token::tokenExist($value)){
-	    		$value = password_hash($value.mt_rand());
+	    		$value = password_hash($value.mt_rand(), PASSWORD_DEFAULT);
 	    	}
 	    	return $value;
 	    }
@@ -39,6 +43,14 @@
 		    $req->execute([$token]);
 		    $res = $req->fetch();
 		    return ($res['nb']!=0);
+	    }
+
+	    public static function pasPerime($token){
+	    	$bd = bd::getInstance();
+		    $req = $bd->prepare("SELECT * FROM TOKEN where VALUET=?;");
+		    $req->execute([$token]);
+		    $res = $req->fetch();
+		    return ($res['ENDT']>time());
 	    }
 	}
 ?>

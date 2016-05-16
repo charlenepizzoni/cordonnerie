@@ -11,7 +11,8 @@
 			$value = Token::genererToken($password);
 			$endDate = time()+60*60*12; // on veut que notre token soit valable 12h
 			$token = new Token(null, $admin->name, $value, $endDate);
-		    setcookie('token', "'".$value."'", ($endDate));
+			$token->addToken();
+		    setcookie('token', $value, ($endDate));
 		    $nom = $admin->name;
 		    $template = $twig->loadTemplate('accueilAdmin.twig');
 		} else {

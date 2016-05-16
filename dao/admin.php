@@ -5,7 +5,7 @@
 		public  $name;
 		public  $password;
 
-		public function __construct($idA, $name, $password){
+		public function Admin($idA, $name, $password){
 			$this->idA = $idA;
 			$this->name = $name;
 			$this->password = $password;
@@ -23,13 +23,13 @@
 
 	    // To add into db
 	    public static function encoderPassword($password){
-	    	return password_hash($password);
+	    	return password_hash($password, PASSWORD_DEFAULT);
 	    }
 
 	    public static function addAdmin($name, $password){
 	    	$bd = bd::getInstance();
-		    $name = mysql_real_escape_string($name);
-		    $req = $bd->query("INSERT INTO 'ADMIN'('IDA','NAMEA','PASSWORDA') VALUES (NULL,".$name.",".encoderPassword($password).")");
+		    $req = $bd->prepare("INSERT INTO 'ADMIN'('IDA','NAMEA','PASSWORDA') VALUES (NULL,?,?)");
+		    $res->execute([$name, $password]);
 	    }
 
 	    // to connect

@@ -9,7 +9,7 @@ CREATE TABLE TOKEN(
 	IDT INT not null unique auto_increment,
 	VALUET VARCHAR(500) not null unique,
 	IDA INT not null,
-	ENDT TIMESTAMP not null,
+	ENDT INT not null,
 	primary key (IDT),
 	foreign key (IDA) references ADMIN(IDA)
 );
@@ -50,3 +50,12 @@ CREATE TABLE COMMANDE(
 
 
 INSERT INTO `ADMIN`(`IDA`, `NAMEA`, `PASSWORDA`) VALUES (NULL,'admin','admin');
+
+delimiter //
+CREATE TRIGGER supprimerToken
+BEFORE INSERT ON TOKEN
+FOR EACH ROW
+BEGIN
+    DELETE FROM TOKEN
+    WHERE ENDT < CURRENT_TIMESATAM;
+END//;
